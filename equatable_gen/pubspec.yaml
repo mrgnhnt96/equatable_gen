@@ -19,7 +19,7 @@ environment:
 
 dependencies:
   analyzer: ">=5.0.0 <8.0.0"
-  equatable_annotations: ">=0.1.0 <1.0.0"
+  equatable_annotations: ^1.0.0
   build: ^2.4.1
   code_builder: ^4.8.0
   change_case: ^2.2.0
