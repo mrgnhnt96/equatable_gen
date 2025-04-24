@@ -2,6 +2,6 @@
 // EquatableGenerator
 // **************************************************************************
 
-extension _$Dataequatable_annotations on _Data {
+extension _$DataEquatableAnnotations on _Data {
   List<Object?> get _$props => [one];
 }

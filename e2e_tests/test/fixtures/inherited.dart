@@ -2,10 +2,10 @@
 // EquatableGenerator
 // **************************************************************************
 
-extension _$Baseequatable_annotations on Base {
+extension _$BaseEquatableAnnotations on Base {
   List<Object?> get _$props => [one];
 }
 
-extension _$Inheritedequatable_annotations on Inherited {
+extension _$InheritedEquatableAnnotations on Inherited {
   List<Object?> get _$props => [two, one];
 }
