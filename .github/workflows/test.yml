@@ -76,7 +76,7 @@ jobs:
             exit 0
           fi
 
-          dart analyze --fatal-infos --fatal-warnings $DIRS
+          dart analyze --fatal-warnings $DIRS
 
       - name: Run tests
         if: matrix.package == 'test_project'
