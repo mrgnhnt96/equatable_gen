@@ -12,7 +12,7 @@ Extension writeExtension(EquatableElement element) {
 
   return Extension(
     (b) => b
-      ..name = '_\$${sanitizedName}equatable_annotations'
+      ..name = '_\$${sanitizedName}EquatableAnnotations'
       ..on = refer(element.name)
       ..methods.add(
         Method(
