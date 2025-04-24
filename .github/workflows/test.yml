@@ -21,7 +21,10 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        package: [equatable_annotations, equatable_gen, test_project]
+        package:
+          - equatable_annotations
+          - equatable_gen
+          - e2e_tests
     steps:
       - id: checkout
         name: Checkout repository
