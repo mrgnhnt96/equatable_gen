@@ -3,3 +3,7 @@ dependency_overrides:
     path: ../equatable_annotations
   equatable_gen:
     path: ../equatable_gen
+  generator_test:
+    git:
+      url: https://github.com/techouse/generator_test.git
+      ref: b7c443372c83d05cf56d175930fcc02208949aaf
