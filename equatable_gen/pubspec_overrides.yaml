@@ -4,4 +4,4 @@ dependency_overrides:
   generator_test:
     git:
       url: https://github.com/techouse/generator_test.git
-      ref: b7c443372c83d05cf56d175930fcc02208949aaf
+      ref: 96af7cba54231a482d54b62bfb5883092cacdfff
