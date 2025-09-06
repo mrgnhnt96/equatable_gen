@@ -24,7 +24,7 @@ final TypeChecker includeChecker = TypeChecker.typeNamed(
   inSdk: false,
 );
 final TypeChecker generatePropsChecker = TypeChecker.typeNamed(
-  include.runtimeType,
+  generateProps.runtimeType,
   inPackage: 'equatable_annotations',
   inSdk: false,
 );
