@@ -1,11 +1,30 @@
 // ignore: implementation_imports
-import 'package:equatable_annotations/src/src.dart';
-import 'package:equatable_gen/src/checkers/type_checker.dart';
+import 'package:equatable/equatable.dart';
+import 'package:equatable_annotations/equatable_annotations.dart';
+import 'package:source_gen/source_gen.dart' show TypeChecker;
 
-const TypeChecker equatableChecker =
-    TypeChecker.fromName('Equatable', packageName: 'equatable');
-const TypeChecker equatableMixinChecker =
-    TypeChecker.fromName('EquatableMixin', packageName: 'equatable');
-final TypeChecker ignoreChecker = TypeChecker.fromName('$Ignore');
-final TypeChecker includeChecker = TypeChecker.fromName('$Include');
-final TypeChecker generatePropsChecker = TypeChecker.fromName('$GenerateProps');
+const TypeChecker equatableChecker = TypeChecker.typeNamed(
+  Equatable,
+  inPackage: 'equatable',
+  inSdk: false,
+);
+const TypeChecker equatableMixinChecker = TypeChecker.typeNamed(
+  EquatableMixin,
+  inPackage: 'equatable',
+  inSdk: false,
+);
+final TypeChecker ignoreChecker = TypeChecker.typeNamed(
+  ignore.runtimeType,
+  inPackage: 'equatable_annotations',
+  inSdk: false,
+);
+final TypeChecker includeChecker = TypeChecker.typeNamed(
+  include.runtimeType,
+  inPackage: 'equatable_annotations',
+  inSdk: false,
+);
+final TypeChecker generatePropsChecker = TypeChecker.typeNamed(
+  include.runtimeType,
+  inPackage: 'equatable_annotations',
+  inSdk: false,
+);
