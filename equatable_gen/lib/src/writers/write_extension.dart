@@ -22,7 +22,7 @@ Extension writeExtension(EquatableElement element) {
             ..name = '_\$props'
             ..body = literalList([
               ...element.props.map(
-                (f) => refer(f.name),
+                (f) => refer(f.name3!),
               ),
             ]).code,
         ),

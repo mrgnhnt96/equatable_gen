@@ -1,4 +1,4 @@
-library generator;
+library;
 
 import 'dart:async' show FutureOr;
 
@@ -22,7 +22,7 @@ final class EquatableGenerator extends Generator {
   FutureOr<String?> generate(LibraryReader library, BuildStep buildStep) {
     final visitor = ClassVisitor(settings);
 
-    library.element.accept(visitor);
+    library.element.accept2(visitor);
 
     final emitter = DartEmitter(useNullSafetySyntax: true);
 

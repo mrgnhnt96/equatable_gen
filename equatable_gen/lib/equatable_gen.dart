@@ -1,4 +1,4 @@
-library equatable_gen;
+library;
 
 import 'package:build/build.dart';
 import 'package:equatable_gen/gen/settings.dart';

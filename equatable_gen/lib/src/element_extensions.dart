@@ -1,11 +1,11 @@
-import 'package:analyzer/dart/element/element.dart';
+import 'package:analyzer/dart/element/element2.dart';
 import 'package:analyzer/dart/element/type.dart';
 import 'package:equatable_gen/src/checkers/checkers.dart';
 import 'package:equatable_gen/src/enums/equatable_type.dart';
 
-/// The extension for [ClassElement] to check if the annotated
+/// The extension for [ClassElement2] to check if the annotated
 /// elements' inheritances are [Equatable].
-extension ClassElementX on ClassElement {
+extension ClassElementX on ClassElement2 {
   bool get usesEquatable =>
       equatableChecker.isSuperOf(this) ||
       usesEquatableViaMixin ||
@@ -21,12 +21,12 @@ extension ClassElementX on ClassElement {
     };
 
     for (final InterfaceType superType in allSupertypes) {
-      final element = superType.element;
-      if (ignore.contains(element.name)) {
+      final element = superType.element3;
+      if (ignore.contains(element.name3)) {
         continue;
       }
 
-      if (element is! ClassElement) {
+      if (element is! ClassElement2) {
         continue;
       }
 
@@ -51,11 +51,11 @@ extension ClassElementX on ClassElement {
   }
 }
 
-extension ElementX on Element {
+extension ElementX on Element2 {
   bool get usesEquatableViaMixin {
-    final Element element = this;
+    final Element2 element = this;
 
-    if (element is! ClassElement) {
+    if (element is! ClassElement2) {
       return false;
     }
 
@@ -76,14 +76,14 @@ extension ElementX on Element {
     }
 
     return mixins.any(
-      (InterfaceType type) => equatableMixinChecker.isExactly(type.element),
+      (InterfaceType type) => equatableMixinChecker.isExactly(type.element3),
     );
   }
 
   bool get hasDirectEquatableMixin {
-    final Element element = this;
+    final Element2 element = this;
 
-    if (element is! ClassElement) {
+    if (element is! ClassElement2) {
       return false;
     }
 
@@ -92,12 +92,12 @@ extension ElementX on Element {
     }
 
     return element.mixins.any(
-      (InterfaceType type) => equatableMixinChecker.isExactly(type.element),
+      (InterfaceType type) => equatableMixinChecker.isExactly(type.element3),
     );
   }
 
   EquatableType get equatableType {
-    if (this is! ClassElement) {
+    if (this is! ClassElement2) {
       return EquatableType.none;
     }
 
