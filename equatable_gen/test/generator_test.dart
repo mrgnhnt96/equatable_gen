@@ -1,3 +1,4 @@
+import 'package:build_test/build_test.dart';
 import 'package:equatable_gen/equatable_gen.dart';
 import 'package:equatable_gen/gen/settings.dart';
 import 'package:generator_test/generator_test.dart';
@@ -17,7 +18,9 @@ void main() {
         ).toJson(),
       );
 
-      await generator.test();
+      final rw = TestReaderWriter(rootPackage: 'a');
+      await rw.testing.loadIsolateSources();
+      await generator.test(readerWriter: rw, rootPackage: 'a');
     });
   }
 }
