@@ -1,3 +1,4 @@
+import 'package:analyzer/dart/element/element.dart';
 import 'package:change_case/change_case.dart';
 import 'package:code_builder/code_builder.dart';
 import 'package:equatable_gen/src/models/equatable_element.dart';
@@ -21,9 +22,9 @@ Extension writeExtension(EquatableElement element) {
             ..type = MethodType.getter
             ..name = '_\$props'
             ..body = literalList([
-              ...element.props.map(
-                (f) => refer(f.name3!),
-              ),
+              for (final FieldElement2 f in element.props)
+                if (f.name3 case final String name?)
+                  refer(name),
             ]).code,
         ),
       ),
