@@ -23,8 +23,7 @@ Extension writeExtension(EquatableElement element) {
             ..name = '_\$props'
             ..body = literalList([
               for (final FieldElement2 f in element.props)
-                if (f.name3 case final String name?)
-                  refer(name),
+                if (f.name3 case final String name?) refer(name),
             ]).code,
         ),
       ),
