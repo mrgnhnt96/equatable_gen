@@ -105,12 +105,13 @@ bool _includeField(
     return true;
   }
 
-  if (ignoreChecker.hasAnnotationOfExact(element.getter2!)) {
-    return false;
-  }
-
-  if (includeChecker.hasAnnotationOfExact(element.getter2!)) {
-    return true;
+  switch (element.getter2) {
+    case final GetterElement getter?
+        when ignoreChecker.hasAnnotationOfExact(getter):
+      return false;
+    case final GetterElement getter?
+        when includeChecker.hasAnnotationOfExact(getter):
+      return true;
   }
 
   if (element.isSynthetic) {
