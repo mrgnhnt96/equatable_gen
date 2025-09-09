@@ -36,7 +36,7 @@ class ClassVisitor extends RecursiveElementVisitor2<void> {
       }
     } else {
       for (final exclude in settings.exclude) {
-        if (RegExp(exclude).hasMatch(element.name3!)) {
+        if (element.name3 case final String name when RegExp(exclude).hasMatch(name)) {
           return;
         }
       }
