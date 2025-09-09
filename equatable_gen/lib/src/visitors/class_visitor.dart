@@ -21,7 +21,7 @@ class ClassVisitor extends RecursiveElementVisitor2<void> {
       bool canInclude = true;
 
       for (final exclude in settings.include) {
-        if (RegExp(exclude).hasMatch(element.name3!)) {
+        if (element.name3 case final String name when RegExp(exclude).hasMatch(name)) {
           canInclude = true;
           break;
         }
