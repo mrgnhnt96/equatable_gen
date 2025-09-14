@@ -5,11 +5,7 @@ part 'main.g.dart';
 
 @generateProps
 class ExampleClass extends Equatable {
-  const ExampleClass({
-    required this.value,
-    this.ignored,
-    this.optional,
-  });
+  const ExampleClass({required this.value, this.ignored, this.optional});
 
   final String? optional;
   final String value;

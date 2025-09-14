@@ -1,3 +1,5 @@
+// ignore_for_file: unused_element_parameter
+
 import 'package:equatable/equatable.dart';
 
 part 'private_class.g.dart';
