@@ -9,10 +9,5 @@ import 'package:source_gen/source_gen.dart';
 Builder equatableGenerator(BuilderOptions options) {
   final settings = Settings.fromJson(options.config);
 
-  return SharedPartBuilder(
-    [
-      EquatableGenerator(settings),
-    ],
-    'equatable_gen',
-  );
+  return SharedPartBuilder([EquatableGenerator(settings)], 'equatable_gen');
 }

@@ -1,9 +1,5 @@
 /// The type of [Equatable] inheritance.
-enum EquatableType {
-  class_,
-  mixin,
-  none,
-}
+enum EquatableType { class_, mixin, none }
 
 /// The extension for [EquatableType] to check annotated elements'
 /// equatable_annotations types.

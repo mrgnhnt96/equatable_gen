@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:analyzer/dart/element/element2.dart';
 import 'package:change_case/change_case.dart';
 import 'package:equatable_gen/src/element_extensions.dart';
@@ -11,7 +13,7 @@ class EquatableElement {
     required bool hasPropsField,
     required this.isAutoInclude,
   }) : shouldCreateExtension =
-            (isAutoInclude || hasAnnotation) && hasPropsField;
+           (isAutoInclude || hasAnnotation) && hasPropsField;
 
   final ClassElement2 element;
   final bool hasAnnotation;

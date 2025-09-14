@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:analyzer/dart/element/element2.dart';
 import 'package:analyzer/dart/element/type.dart';
 import 'package:equatable_gen/src/checkers/checkers.dart';
@@ -14,11 +16,7 @@ extension ClassElementX on ClassElement2 {
   bool get equatableIsSuper => equatableChecker.isSuperOf(this);
 
   bool get superHasProps {
-    final ignore = {
-      'Object',
-      'Equatable',
-      'EquatableMixin',
-    };
+    final ignore = {'Object', 'Equatable', 'EquatableMixin'};
 
     for (final InterfaceType superType in allSupertypes) {
       final element = superType.element3;

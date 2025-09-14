@@ -5,7 +5,5 @@ import 'package:equatable_gen/src/writers/write_extension.dart';
 List<Spec> writeFile(List<EquatableElement> equatables) {
   final extensions = equatables.map(writeExtension);
 
-  return [
-    ...extensions,
-  ];
+  return [...extensions];
 }

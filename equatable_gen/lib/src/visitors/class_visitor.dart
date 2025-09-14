@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:analyzer/dart/element/element2.dart';
 import 'package:analyzer/dart/element/visitor2.dart';
 import 'package:equatable_gen/gen/settings.dart';
@@ -56,8 +58,11 @@ class ClassVisitor extends RecursiveElementVisitor2<void> {
         break;
       }
 
-      props.addAll(clazz.fields2
-          .where((e) => _includeField(e, settings, isSuper: isSuper)));
+      props.addAll(
+        clazz.fields2.where(
+          (e) => _includeField(e, settings, isSuper: isSuper),
+        ),
+      );
       clazz = clazz.supertype?.element3 as ClassElement2?;
       isSuper = true;
     } while (clazz != null);
