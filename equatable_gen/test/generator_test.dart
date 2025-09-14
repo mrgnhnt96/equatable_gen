@@ -13,9 +13,7 @@ void main() {
         [input],
         [output],
         equatableGenerator,
-        options: Settings.defaults(
-          autoInclude: true,
-        ).toJson(),
+        options: Settings.defaults(autoInclude: true).toJson(),
       );
 
       final rw = TestReaderWriter(rootPackage: 'a');
