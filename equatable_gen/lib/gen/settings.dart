@@ -1,7 +1,9 @@
-import 'settings_interface.dart';
+import 'package:equatable_gen/gen/settings_interface.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'settings.g.dart';
 
+@JsonSerializable(fieldRename: FieldRename.snake, constructor: 'defaults')
 class Settings implements SettingsInterface {
   const Settings({
     required this.includeGetters,
@@ -17,7 +19,7 @@ class Settings implements SettingsInterface {
     this.include = const [],
   });
 
-  factory Settings.fromJson(Map json) {
+  factory Settings.fromJson(Map<String, dynamic> json) {
     final settings = _$SettingsFromJson(json);
 
     final patternValidationLocations = <String, List<String>>{};
@@ -48,14 +50,18 @@ class Settings implements SettingsInterface {
   Map<String, dynamic> toJson() => _$SettingsToJson(this);
 
   @override
+  @JsonKey(defaultValue: false)
   final bool autoInclude;
 
   @override
+  @JsonKey(defaultValue: [])
   final List<String> exclude;
 
   @override
+  @JsonKey(defaultValue: [])
   final List<String> include;
 
   @override
+  @JsonKey(defaultValue: false)
   final bool includeGetters;
 }

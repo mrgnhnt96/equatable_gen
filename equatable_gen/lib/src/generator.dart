@@ -1,5 +1,3 @@
-// ignore_for_file: deprecated_member_use
-
 library;
 
 import 'dart:async' show FutureOr;
@@ -24,7 +22,7 @@ final class EquatableGenerator extends Generator {
   FutureOr<String?> generate(LibraryReader library, BuildStep buildStep) {
     final visitor = ClassVisitor(settings);
 
-    library.element.accept2(visitor);
+    library.element.accept(visitor);
 
     final emitter = DartEmitter(useNullSafetySyntax: true);
 

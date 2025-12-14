@@ -27,18 +27,9 @@ void main() {
       'auto_include.dart',
       settings: Settings.defaults(autoInclude: true),
     ),
-    GeneratorInput.file(
-      'annotated.dart',
-      settings: Settings.defaults(),
-    ),
-    GeneratorInput.file(
-      'inherited.dart',
-      settings: Settings.defaults(),
-    ),
-    GeneratorInput.file(
-      'mixin_inherited.dart',
-      settings: Settings.defaults(),
-    ),
+    GeneratorInput.file('annotated.dart', settings: Settings.defaults()),
+    GeneratorInput.file('inherited.dart', settings: Settings.defaults()),
+    GeneratorInput.file('mixin_inherited.dart', settings: Settings.defaults()),
   ];
 
   for (final input in inputs) {

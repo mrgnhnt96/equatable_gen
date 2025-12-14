@@ -5,11 +5,7 @@ part 'ignore.g.dart';
 
 @generateProps
 class Ignore {REPLACE} {
-  const Ignore(
-    this.one, {
-    required this.two,
-    this.three,
-  });
+  const Ignore(this.one, {required this.two, this.three});
 
   @ignore
   final String one;

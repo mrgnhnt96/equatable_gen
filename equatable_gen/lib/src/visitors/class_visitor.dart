@@ -1,6 +1,4 @@
-// ignore_for_file: deprecated_member_use
-
-import 'package:analyzer/dart/element/element2.dart';
+import 'package:analyzer/dart/element/element.dart';
 import 'package:analyzer/dart/element/visitor2.dart';
 import 'package:equatable_gen/gen/settings.dart';
 import 'package:equatable_gen/src/checkers/checkers.dart';
@@ -14,7 +12,7 @@ class ClassVisitor extends RecursiveElementVisitor2<void> {
   final List<EquatableElement> nodes = [];
 
   @override
-  void visitClassElement(ClassElement2 element) {
+  void visitClassElement(ClassElement element) {
     if (!element.usesEquatable) {
       return;
     }
@@ -23,7 +21,7 @@ class ClassVisitor extends RecursiveElementVisitor2<void> {
       bool canInclude = true;
 
       for (final exclude in settings.include) {
-        if (element.name3 case final String name
+        if (element.name case final String name
             when RegExp(exclude).hasMatch(name)) {
           canInclude = true;
           break;
@@ -39,7 +37,7 @@ class ClassVisitor extends RecursiveElementVisitor2<void> {
       }
     } else {
       for (final exclude in settings.exclude) {
-        if (element.name3 case final String name
+        if (element.name case final String name
             when RegExp(exclude).hasMatch(name)) {
           return;
         }
@@ -48,9 +46,9 @@ class ClassVisitor extends RecursiveElementVisitor2<void> {
 
     final annotation = generatePropsChecker.firstAnnotationOfExact(element);
 
-    final props = <FieldElement2>[];
+    final props = <FieldElement>[];
 
-    ClassElement2? clazz = element;
+    ClassElement? clazz = element;
     var isSuper = false;
 
     do {
@@ -59,11 +57,9 @@ class ClassVisitor extends RecursiveElementVisitor2<void> {
       }
 
       props.addAll(
-        clazz.fields2.where(
-          (e) => _includeField(e, settings, isSuper: isSuper),
-        ),
+        clazz.fields.where((e) => _includeField(e, settings, isSuper: isSuper)),
       );
-      clazz = clazz.supertype?.element3 as ClassElement2?;
+      clazz = clazz.supertype?.element as ClassElement?;
       isSuper = true;
     } while (clazz != null);
 
@@ -71,7 +67,7 @@ class ClassVisitor extends RecursiveElementVisitor2<void> {
       element: element,
       hasAnnotation: annotation != null,
       props: props,
-      hasPropsField: element.getField2('props') != null,
+      hasPropsField: element.getField('props') != null,
       isAutoInclude: settings.autoInclude,
     );
 
@@ -82,7 +78,7 @@ class ClassVisitor extends RecursiveElementVisitor2<void> {
 }
 
 bool _includeField(
-  FieldElement2 element,
+  FieldElement element,
   Settings settings, {
   bool isSuper = false,
 }) {
@@ -94,7 +90,7 @@ bool _includeField(
     return false;
   }
 
-  if (element.name3 == 'props') {
+  if (element.name == 'props') {
     return false;
   }
 
@@ -102,7 +98,7 @@ bool _includeField(
     return false;
   }
 
-  if (element.getter2 == null) {
+  if (element.getter == null) {
     return false;
   }
 
@@ -110,7 +106,7 @@ bool _includeField(
     return true;
   }
 
-  switch (element.getter2) {
+  switch (element.getter) {
     case final GetterElement getter?
         when ignoreChecker.hasAnnotationOfExact(getter):
       return false;

@@ -5,11 +5,7 @@ part 'basic.g.dart';
 
 @generateProps
 class Basic extends Equatable {
-  const Basic(
-    this.one, {
-    required this.two,
-    this.three,
-  });
+  const Basic(this.one, {required this.two, this.three});
 
   final String one;
   final String two;

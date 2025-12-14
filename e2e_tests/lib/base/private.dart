@@ -5,12 +5,8 @@ part 'private.g.dart';
 
 @generateProps
 class Private {REPLACE} {
-  const Private(
-    this._one, {
-    required String two,
-    String? three,
-  })  : _two = two,
-        _three = three;
+  const Private(this._one, {required String two, String? three})
+    : _two = two, _three = three;
 
   final String _one;
   final String _two;

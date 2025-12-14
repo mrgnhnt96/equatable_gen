@@ -5,11 +5,7 @@ part 'static.g.dart';
 
 @generateProps
 class Static with EquatableMixin {
-  const Static(
-    this.one, {
-    required this.two,
-    this.three,
-  });
+  const Static(this.one, {required this.two, this.three});
 
   final String one;
   final String two;

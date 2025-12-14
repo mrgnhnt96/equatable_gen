@@ -81,3 +81,4 @@ pubspec.lock
 .lh
 test_project/**/gen/**
 needs_publishing.txt
+equatable_gen/example/*.g.dart
