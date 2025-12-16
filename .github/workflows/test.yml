@@ -19,12 +19,6 @@ jobs:
   test:
     name: "Test"
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        package:
-          - equatable_annotations
-          - equatable_gen
-          - e2e_tests
     steps:
       - id: checkout
         name: Checkout repository
@@ -36,49 +30,35 @@ jobs:
         with:
           sdk: stable
 
-      - id: install
-        name: Install dependencies
-        working-directory: ${{ matrix.package }}
-        run: dart pub get
+      - name: Install Sip
+        run: dart pub global activate sip
 
       - name: Check the formatting of one or more Dart files
-        working-directory: ${{ matrix.package }}
         run: |
           set -e
-          MAIN_DIRS=$(sh ../scripts/get_dirs.sh lib base gen)
-          TEST_DIRS=$(sh ../scripts/get_dirs.sh test base gen)
 
-          echo "Formating..."
-          echo "Main dirs: $MAIN_DIRS"
-          echo "Test dirs: $TEST_DIRS"
-
-          DIRS="$MAIN_DIRS $TEST_DIRS"
-          if [ -z "$DIRS" ]; then
-            echo "No files to format"
-            exit 0
-          fi
-
+          cd equatable_annotations || exit 1
           dart format --set-exit-if-changed $DIRS
+          cd ../ || exit 1
+
+          cd equatable_gen || exit 1
+          dart format --set-exit-if-changed $DIRS
+          cd ../ || exit 1
 
       - name: Analyze the project's Dart code
-        working-directory: ${{ matrix.package }}
         run: |
           set -e
-          MAIN_DIRS=$(sh ../scripts/get_dirs.sh lib base gen)
-          TEST_DIRS=$(sh ../scripts/get_dirs.sh test base gen)
 
-          echo "Analyzing..."
-          echo "Main dirs: $MAIN_DIRS"
-          echo "Test dirs: $TEST_DIRS"
-          DIRS="$MAIN_DIRS $TEST_DIRS"
-          if [ -z "$DIRS" ]; then
-            echo "No files to format"
-            exit 0
-          fi
-
+          cd equatable_annotations || exit 1
           dart analyze --fatal-warnings $DIRS
+          cd ../ || exit 1
 
-      - name: Run tests
-        if: matrix.package == 'test_project'
-        working-directory: ${{ matrix.package }}
-        run: dart run derry test
+          cd equatable_gen || exit 1
+          dart analyze --fatal-warnings $DIRS
+          cd ../ || exit 1
+
+      - name: Run Gen tests
+        run: sip run test gen
+
+      - name: Run E2E tests
+        run: sip run test e2e

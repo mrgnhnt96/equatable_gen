@@ -1,3 +1,10 @@
+## 1.3.0 | 12.16.25
+
+### Enhancements
+
+- Update dependencies
+  - Thanks [@techouse](https://github.com/techouse) for the contribution! 🎉
+
 ## 1.2.0 | 9.18.25
 
 ### Enhancements
