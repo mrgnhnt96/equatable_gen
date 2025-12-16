@@ -33,6 +33,15 @@ jobs:
       - name: Install Sip
         run: dart pub global activate sip_cli
 
+      - name: Install Depedencies
+        run: |
+          cd equatable_annotations || exit 1
+          dart pub get
+          cd ../ || exit 1
+
+          cd equatable_gen || exit 1
+          dart pub get
+
       - name: Check the formatting of one or more Dart files
         run: |
           set -e
@@ -43,7 +52,6 @@ jobs:
 
           cd equatable_gen || exit 1
           dart format . --set-exit-if-changed
-          cd ../ || exit 1
 
       - name: Analyze the project's Dart code
         run: |
@@ -55,7 +63,6 @@ jobs:
 
           cd equatable_gen || exit 1
           dart analyze . --fatal-warnings
-          cd ../ || exit 1
 
       - name: Run Gen tests
         run: sip run test gen
