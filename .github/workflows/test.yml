@@ -38,11 +38,11 @@ jobs:
           set -e
 
           cd equatable_annotations || exit 1
-          dart format --set-exit-if-changed $DIRS
+          dart format . --set-exit-if-changed
           cd ../ || exit 1
 
           cd equatable_gen || exit 1
-          dart format --set-exit-if-changed $DIRS
+          dart format . --set-exit-if-changed
           cd ../ || exit 1
 
       - name: Analyze the project's Dart code
@@ -50,11 +50,11 @@ jobs:
           set -e
 
           cd equatable_annotations || exit 1
-          dart analyze --fatal-warnings $DIRS
+          dart analyze . --fatal-warnings
           cd ../ || exit 1
 
           cd equatable_gen || exit 1
-          dart analyze --fatal-warnings $DIRS
+          dart analyze . --fatal-warnings
           cd ../ || exit 1
 
       - name: Run Gen tests
