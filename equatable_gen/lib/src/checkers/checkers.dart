@@ -1,4 +1,3 @@
-// ignore: implementation_imports
 import 'package:equatable/equatable.dart';
 import 'package:equatable_annotations/equatable_annotations.dart';
 import 'package:source_gen/source_gen.dart' show TypeChecker;

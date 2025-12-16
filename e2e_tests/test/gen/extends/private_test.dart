@@ -18,8 +18,11 @@ void main() {
 
     test('should not be equal when the properties are not equal', () {
       final instance1 = Private('sup dude', two: 'Hows it going');
-      final instance2 =
-          Private('sup dude', two: 'Hows it going', three: 'good');
+      final instance2 = Private(
+        'sup dude',
+        two: 'Hows it going',
+        three: 'good',
+      );
 
       expect(instance1, isNot(instance2));
     });
