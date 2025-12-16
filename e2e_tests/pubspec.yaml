@@ -18,5 +18,3 @@ dev_dependencies:
   lints: ^6.0.0
   test: ^1.28.0
   generator_test: ^0.6.0
-
-scripts: scripts.yaml

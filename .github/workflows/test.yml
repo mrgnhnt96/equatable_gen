@@ -31,7 +31,7 @@ jobs:
           sdk: stable
 
       - name: Install Sip
-        run: dart pub global activate sip
+        run: dart pub global activate sip_cli
 
       - name: Check the formatting of one or more Dart files
         run: |
