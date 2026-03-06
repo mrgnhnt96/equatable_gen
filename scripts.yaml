@@ -34,6 +34,8 @@ test:
         cd e2e_tests &&
         dart test --test-randomize-ordering-seed=random
 
+  analyzer: sh scripts/test_analyzer_versions.sh
+
 publish:
   (bail):
   (command):
