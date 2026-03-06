@@ -1,3 +1,9 @@
+## 1.3.1 | 3.6.25
+
+### Enhancements
+
+- Extend analyzer support to 10.x (`>=8.0.0 <11.0.0`)
+
 ## 1.3.0 | 12.16.25
 
 ### Enhancements
