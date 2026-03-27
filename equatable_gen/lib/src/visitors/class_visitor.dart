@@ -58,12 +58,7 @@ class ClassVisitor extends RecursiveElementVisitor2<void> {
 
       props.addAll(
         clazz.fields.where(
-          (e) => _includeField(
-            e,
-            settings,
-            element,
-            isSuper: isSuper,
-          ),
+          (e) => _includeField(e, settings, element, isSuper: isSuper),
         ),
       );
       clazz = clazz.supertype?.element as ClassElement?;

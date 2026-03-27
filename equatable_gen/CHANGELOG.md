@@ -1,3 +1,9 @@
+## 1.3.2 | 3.27.26
+
+### Fixes
+
+- Honor `@ignore` / `@include` on getters that override a superclass field.
+
 ## 1.3.1 | 3.6.25
 
 ### Enhancements
