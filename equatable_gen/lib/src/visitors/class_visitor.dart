@@ -57,7 +57,14 @@ class ClassVisitor extends RecursiveElementVisitor2<void> {
       }
 
       props.addAll(
-        clazz.fields.where((e) => _includeField(e, settings, isSuper: isSuper)),
+        clazz.fields.where(
+          (e) => _includeField(
+            e,
+            settings,
+            element,
+            isSuper: isSuper,
+          ),
+        ),
       );
       clazz = clazz.supertype?.element as ClassElement?;
       isSuper = true;
@@ -77,9 +84,37 @@ class ClassVisitor extends RecursiveElementVisitor2<void> {
   }
 }
 
+/// When walking superclasses, [field] may be declared on a superclass while the
+/// subclass overrides it with a getter (e.g. `final path` → `@ignore String get path`).
+/// Metadata on the override lives on the subclass getter, so we resolve it via
+/// [subjectClass] instead of only using [field.getter].
+GetterElement? _getterForEquatableProps(
+  FieldElement field,
+  ClassElement subjectClass, {
+  required bool isSuper,
+}) {
+  final inheritedGetter = field.getter;
+  if (!isSuper) {
+    return inheritedGetter;
+  }
+  final name = field.name;
+  if (name == null) {
+    return inheritedGetter;
+  }
+  final shadowing = subjectClass.getGetter(name);
+  if (shadowing == null) {
+    return inheritedGetter;
+  }
+  if (shadowing.enclosingElement != field.enclosingElement) {
+    return shadowing;
+  }
+  return inheritedGetter;
+}
+
 bool _includeField(
   FieldElement element,
-  Settings settings, {
+  Settings settings,
+  ClassElement subjectClass, {
   bool isSuper = false,
 }) {
   if (element.isPrivate && isSuper) {
@@ -94,25 +129,28 @@ bool _includeField(
     return false;
   }
 
+  final getterForMetadata = _getterForEquatableProps(
+    element,
+    subjectClass,
+    isSuper: isSuper,
+  );
+
   if (ignoreChecker.hasAnnotationOfExact(element)) {
     return false;
   }
 
-  if (element.getter == null) {
+  if (getterForMetadata != null &&
+      ignoreChecker.hasAnnotationOfExact(getterForMetadata)) {
     return false;
   }
 
-  if (includeChecker.hasAnnotationOfExact(element)) {
-    return true;
+  if (getterForMetadata == null) {
+    return false;
   }
 
-  switch (element.getter) {
-    case final GetterElement getter?
-        when ignoreChecker.hasAnnotationOfExact(getter):
-      return false;
-    case final GetterElement getter?
-        when includeChecker.hasAnnotationOfExact(getter):
-      return true;
+  if (includeChecker.hasAnnotationOfExact(element) ||
+      includeChecker.hasAnnotationOfExact(getterForMetadata)) {
+    return true;
   }
 
   if (element.isSynthetic) {
